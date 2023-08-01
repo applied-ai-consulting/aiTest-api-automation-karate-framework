@@ -1,0 +1,22 @@
+pipeline{
+    agent {
+        label "ec2slave-t2med"
+    }
+
+
+
+    stages{
+        stage("Test and Build"){
+            steps{
+                script {
+                    sh " mvn clean test '-Dkarate.options=--tags @${tags}' -Dkarate.env=${environment}"                }
+            }
+        }
+    }
+    post{
+        always{
+     		cucumber fileIncludePattern: '**/*.json', sortingMethod: 'ALPHABETICAL', jsonReportDirectory: 'target/karate-reports'
+     		archiveArtifacts artifacts: 'target/karate-reports/**/*'
+        }
+    }
+}
