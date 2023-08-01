@@ -11,4 +11,6 @@ Feature: User Details
     Then print response
     And match response == expectedOutput[0]
 
-
+Scenario: Execute Java Method
+  * def output = Java.type('util.JavaUtilityMethods').randomAlphaNumeric(10)
+  * print output
