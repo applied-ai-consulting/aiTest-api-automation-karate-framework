@@ -5,11 +5,14 @@ function fn() {
     }if (env == 'dev') {
         var config = {
             env: env,
-            baseUrl: 'https://reqres.in'
+            baseUrl: 'https://reqres.in',
+            envCheck:'This is Dev Env'
             }
  } else if (env == 'devci') {
      		var config = {
             env: env,
+            baseUrl: 'https://reqres.in',
+            envCheck:'This is Devci Env'
              }
      	}else if (env == 'e2e') {
      }

@@ -58,3 +58,21 @@ Feature: User Details
   Scenario: Run cmd commands
     * def command = "cmd /c echo Hello, this is a test > newfile.txt"
     * def cmdOutput = karate.exec(command)
+
+  Scenario: Writing functions inside feature file
+    * def pause = function(millis){ java.lang.Thread.sleep(millis) }
+    * print "1"
+    * pause(5000)
+    * print "2"
+
+  Scenario: Use of conditional statements
+    * def environment = karate.os.type
+    * def home = karate.properties['user.dir']
+    * if (environment == 'windows') os = 'windows'
+    * print os
+
+  @MavenTest
+  Scenario: Running karate tests using maven command
+    # mvn clean test '-Dkarate.options=--tags @MavenTest'
+    * def command = "cmd /c echo Hello, this is a test > newfile.txt"
+    * def cmdOutput = karate.exec(command)
