@@ -52,3 +52,9 @@ Feature: User Details
     * def expectedEmails = ["janet.weaver@reqres.in", "emma.wong@reqres.in"]
     * def actualEmails = get actualResponse[*].data.email
     * match actualEmails contains expectedEmails
+    * match actualResponse[0].data.email == '#string'
+    * match each actualResponse[*].support.url == "https://reqres.in/#support-heading"
+
+  Scenario: Run cmd commands
+    * def command = "cmd /c echo Hello, this is a test > newfile.txt"
+    * def cmdOutput = karate.exec(command)
