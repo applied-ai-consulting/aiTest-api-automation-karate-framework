@@ -65,7 +65,7 @@ Feature: User Details
     * match each actualResponse[*].support.url == "https://reqres.in/#support-heading"
 
   Scenario: Run cmd commands
-    * def command = "cmd /c echo Hello, this is a test > newfile.txt"
+    * def command = "cmd /c echo Hello, this is a test > newFileKarateExec.txt"
     * def cmdOutput = karate.exec(command)
 
   Scenario: Writing functions inside feature file
@@ -83,5 +83,5 @@ Feature: User Details
   @MavenTest
   Scenario: Running karate tests using maven command
     # mvn clean test '-Dkarate.options=--tags @MavenTest'
-    * def command = "cmd /c echo Hello, this is a test > newfile.txt"
+    * def command = "cmd /c echo Hello, this is a test > newFileMavenTest.txt"
     * def cmdOutput = karate.exec(command)
