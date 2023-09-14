@@ -5,12 +5,21 @@ Feature: User Details
     And header X-Auth-Token = 'bearer token'
     And header Content-Type = 'application/json'
 
-  Scenario: request user 2 call test
+  Scenario: request user Get Scenario
     Given url baseUrl + '/api/users/2'
     When method GET
     Then status 200
     Then print response
     And match response == expectedOutput[0]
+
+  Scenario: request user Post Scenario
+    Given url baseUrl + '/api/users'
+    And request {"name": "morpheus","job": "leader"}
+    When method POST
+    Then status 201
+    Then print response
+    And match response.name == 'morpheus'
+    And match response.job == 'leader'
 
   Scenario: Execute Java Method
   * def output = Java.type('util.JavaUtilityMethods').randomAlphaNumeric(10)
